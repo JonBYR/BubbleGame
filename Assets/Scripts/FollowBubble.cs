@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class FollowBubble : MonoBehaviour
 {
-    public GameObject player;
-    private Vector3 offset;
-    // Start is called before the first frame update
-    void Start()
-    {
-        offset = transform.position - player.transform.position;
-    }
 
-    // Update is called once per frame
-    void LateUpdate()
+    public float turnSpeed = 5f;
+    public GameObject player;
+    private Transform playerTransform;
+    private Vector3 offset;
+    private float yOffset = 10.0f;
+    private float zOffset = 10.0f;
+    private void Start() //obsolute script
     {
-        transform.position = player.transform.position + offset;
+        playerTransform = player.transform;
+        offset = new Vector3(playerTransform.position.x, playerTransform.position.y + yOffset, playerTransform.position.z + zOffset);
+    }
+    private void FixedUpdate()
+    {
+        offset = Quaternion.AngleAxis(player.GetComponent<PlayerController>().horizontalDirection * turnSpeed, Vector3.up) * offset;
+        transform.position = playerTransform.position + offset;
+        transform.LookAt(playerTransform.position);
     }
 }
