@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Unity.AI.Navigation;
 public class GenerateLevel : MonoBehaviour
 {
     public GameObject spikePrefab;
     public GameObject levelParent;
     public int spikeThresehold = 20;
     public float checkDistance = 10;
+    [SerializeField]
+    private NavMeshSurface surface;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -32,6 +34,6 @@ public class GenerateLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        surface.BuildNavMesh();
     }
 }

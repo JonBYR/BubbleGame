@@ -1397,7 +1397,7 @@ PrefabInstance:
       objectReference: {fileID: 291603904}
     - target: {fileID: 7093936370693612553, guid: 6cc8f9f43be073b48a93b9470e5d5ed7, type: 3}
       propertyPath: quest.reward
-      value: Weights
+      value: Jumping
       objectReference: {fileID: 0}
     - target: {fileID: 7093936370693612553, guid: 6cc8f9f43be073b48a93b9470e5d5ed7, type: 3}
       propertyPath: quest.description
@@ -1716,6 +1716,7 @@ MonoBehaviour:
   levelParent: {fileID: 645629991}
   spikeThresehold: 100
   checkDistance: 10
+  surface: {fileID: 1963235431}
 --- !u!4 &1555133331
 Transform:
   m_ObjectHideFlags: 0
@@ -1756,6 +1757,7 @@ MonoBehaviour:
   confetti: {fileID: 6368589104699703915, guid: b9c461f4e3181cf41829447affeb1d37, type: 3}
   evilBubble: {fileID: 1016459615314334707, guid: b799b06001f9ff6428fcb2bafd1d9995, type: 3}
   bubbleDefeated: 0
+  acceptText: {fileID: 30716333}
 --- !u!1 &1787065628
 GameObject:
   m_ObjectHideFlags: 0
@@ -2092,6 +2094,69 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1963235430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1963235432}
+  - component: {fileID: 1963235431}
+  m_Layer: 0
+  m_Name: NavMesh Surface
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1963235431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963235430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 1.6666666
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 4fce2ba3a85a32f41927e0b473650543, type: 2}
+  m_BuildHeightMesh: 0
+--- !u!4 &1963235432
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963235430}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 76.62999, y: 2.2232208, z: 36.571175}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1975486353
 GameObject:
   m_ObjectHideFlags: 0
@@ -2273,6 +2338,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bubble
       objectReference: {fileID: 0}
+    - target: {fileID: 8171331058868084828, guid: 7b39e30fda2bfcb47b3a643478d8f950, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2390,3 +2459,4 @@ SceneRoots:
   - {fileID: 1948735608}
   - {fileID: 8920770875094105199}
   - {fileID: 1128031049}
+  - {fileID: 1963235432}

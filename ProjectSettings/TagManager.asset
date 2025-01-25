@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Level
   - NPC
+  - Enemy
   layers:
   - Default
   - TransparentFX

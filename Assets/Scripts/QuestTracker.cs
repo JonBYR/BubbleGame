@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class QuestTracker : MonoBehaviour
 {
     public static QuestTracker Instance;
@@ -15,6 +15,7 @@ public class QuestTracker : MonoBehaviour
     public GameObject evilBubble;
     public bool bubbleDefeated = false;
     private bool bubbleUnleashed = false;
+    public TextMeshProUGUI acceptText;
     public void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);
@@ -46,6 +47,7 @@ public class QuestTracker : MonoBehaviour
     }
     public void ResetQuestBool()
     {
+        acceptText.text = "Y to accept \n N to cancel";
         showWindow = false;
         Destroy(NPC);
         NPC = null;
