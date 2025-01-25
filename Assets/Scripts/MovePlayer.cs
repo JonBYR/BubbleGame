@@ -7,6 +7,7 @@ public class MovePlayer : MonoBehaviour
     private Rigidbody rb;
     public GameObject cameraX;
     public GameObject cameraY;
+    private QuestTracker q;
     private float moveSpeed = 500;
     private float horizontalInput;
     private float verticalInput;
@@ -20,6 +21,7 @@ public class MovePlayer : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        q = QuestTracker.Instance;
         rb = GetComponent<Rigidbody>();
     }
     
@@ -34,7 +36,6 @@ public class MovePlayer : MonoBehaviour
     private void Update()
     {
         MoveSphere();
-        
         MoveCamera();
     }
     void MoveCamera()

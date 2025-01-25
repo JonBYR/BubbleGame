@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpikeController : MonoBehaviour
+public class ClosenessCheck : MonoBehaviour
 {
     GameObject player;
     QuestTracker q;
@@ -16,20 +16,16 @@ public class SpikeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(q.currentQuest.title == "Spiky Danger!" && q.activeQuest == true)
-        {
-            float dist = Vector3.Distance(player.transform.position, transform.position);
-            if (Mathf.Abs(dist) <= 1)
-            {
-                q.checkSpike();
-            }
-        }
+        
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
-            Debug.Log("It's Over");
+            if (q.currentQuest.title == "Spiky Danger!" && q.activeQuest == true)
+            {
+                q.checkSpike();
+            }
         }
     }
 }
