@@ -27,8 +27,12 @@ public class EvilBubbleController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.collider.gameObject.name == "Bubble")
-        {
-            rb.AddForce(force, ForceMode.Impulse);
+        { //assuming elastic collision
+            float initialSpeedBubble = collision.collider.gameObject.GetComponent<Rigidbody>().velocity.magnitude; //this is the object that is collided with
+            float initialSpeedEvil = this.gameObject.GetComponent<Rigidbody>().velocity.magnitude;
+            float initialAngleBubble = Mathf.Tan(collision.collider.gameObject.GetComponent<Rigidbody>().velocity.z / collision.collider.gameObject.GetComponent<Rigidbody>().velocity.x);
+            float initialAngleEvil = Mathf.Tan(this.gameObject.GetComponent<Rigidbody>().velocity.z / this.gameObject.GetComponent<Rigidbody>().velocity.x);
+            float momentumBefore = (initialSpeedEvil);
         }
     }
 }
