@@ -11,6 +11,10 @@ public class QuestTracker : MonoBehaviour
     private bool showWindow = false;
     public bool closeToSpike = false;
     public GameObject NPC;
+    public ParticleSystem confetti;
+    public GameObject evilBubble;
+    public bool bubbleDefeated = false;
+    private bool bubbleUnleashed = false;
     public void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);
@@ -34,6 +38,11 @@ public class QuestTracker : MonoBehaviour
             showWindow = !showWindow;
             questWindow.SetActive(showWindow);
         }
+        if(currentQuest.title == "Murderous Bubble" && bubbleUnleashed != true)
+        {
+            Instantiate(evilBubble, new Vector3(0, 3.1f, 0), Quaternion.identity);
+            bubbleUnleashed = true;
+        }
     }
     public void ResetQuestBool()
     {
@@ -49,6 +58,8 @@ public class QuestTracker : MonoBehaviour
             closeToSpike = true;
             activeQuest = false;
             GameObject.Find("Bubble").transform.GetChild(0).gameObject.SetActive(true);
+            Transform particlePosition = GameObject.Find("Bubble").transform;
+            Instantiate(confetti, particlePosition.position, Quaternion.identity);
             ResetQuestBool();
         }
     }
