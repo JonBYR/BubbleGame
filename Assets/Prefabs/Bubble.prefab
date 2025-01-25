@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9090277843575643643}
   - component: {fileID: 292366869541461505}
   - component: {fileID: 557918011003397907}
+  - component: {fileID: 6498745802330581255}
   m_Layer: 0
   m_Name: Bubble
   m_TagString: Player
@@ -169,6 +170,25 @@ MonoBehaviour:
   m_IgnoreFromBuild: 1
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!114 &6498745802330581255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171331058868084828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a10876ec8bb1cc445b89f0a840af2a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windTimer: 20
+  endWind: 5
+  galeText: {fileID: 0}
+  windForce: 5
+  xWind: 1
+  yWind: 1
+  zWind: 1
 --- !u!1001 &4604687786263261484
 PrefabInstance:
   m_ObjectHideFlags: 0
