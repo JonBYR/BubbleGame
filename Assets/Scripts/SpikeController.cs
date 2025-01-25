@@ -31,5 +31,10 @@ public class SpikeController : MonoBehaviour
         {
             Debug.Log("It's Over");
         }
+        else if(other.gameObject.tag == "Enemy")
+        {
+            q.checkEnemy();
+            Destroy(other.gameObject);
+        }
     }
 }

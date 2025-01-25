@@ -65,4 +65,15 @@ public class QuestTracker : MonoBehaviour
             ResetQuestBool();
         }
     }
+    public void checkEnemy()
+    {
+        if(currentQuest.title == "Murderous Bubble" && activeQuest == true)
+        {
+            bubbleDefeated = true;
+            activeQuest = false;
+            Transform particlePosition = GameObject.Find("Bubble").transform;
+            Instantiate(confetti, particlePosition.position, Quaternion.identity);
+            ResetQuestBool();
+        }
+    }
 }
