@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: -7601226680800833775, guid: 57b412831e4f04a48821e92ae4ed54d5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1086e0a43074c3c4f8ccb6afe1536f7a, type: 2}
     - target: {fileID: 919132149155446097, guid: 57b412831e4f04a48821e92ae4ed54d5, type: 3}
       propertyPath: m_Name
       value: GodSpike
@@ -145,4 +149,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2413d461ff15d8840a0484773cd3857f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: 5
+  explosion: 30
+  radius: 10

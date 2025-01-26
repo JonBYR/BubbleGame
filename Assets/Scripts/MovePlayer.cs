@@ -18,11 +18,15 @@ public class MovePlayer : MonoBehaviour
     private float turnRate = 500f; //sensitivity of mouse
     private float lookRate = 500f; //x and y
     private float camRotationY;
+    private Vector3 jump;
+    private bool isGrounded = true;
+    public float jumpForce = 10f;
     // Start is called before the first frame update
     private void Start()
     {
         q = QuestTracker.Instance;
         rb = GetComponent<Rigidbody>();
+        jump = new Vector3(0, 2, 0);
     }
     
     void MoveSphere()
@@ -37,6 +41,11 @@ public class MovePlayer : MonoBehaviour
     {
         MoveSphere();
         MoveCamera();
+        if(q.bubbleDefeated == true && Input.GetKeyDown(KeyCode.KeypadEnter) && isGrounded)
+        {
+            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
+        }
     }
     void MoveCamera()
     {
@@ -48,5 +57,9 @@ public class MovePlayer : MonoBehaviour
         camRotY = Mathf.Clamp(camRotY, -90f, 90f); //value cannot exceed -90 or 90
         cameraY.transform.localRotation = Quaternion.Euler(camRotY, 0f, 0f);
         cameraX.transform.position = transform.position; //follow sphere
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        isGrounded = true;
     }
 }

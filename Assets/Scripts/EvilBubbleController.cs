@@ -36,7 +36,7 @@ public class EvilBubbleController : MonoBehaviour
         Vector3 average = (midpointA + midpointB) / 2; //get the average of the two midpoints
         Rigidbody rbBubble = c.collider.gameObject.GetComponent<Rigidbody>();
         rb.AddExplosionForce(explosionForce, average, radius, upwards, ForceMode.Impulse);
-        rbBubble.AddExplosionForce(explosionForce, average, radius, upwards, ForceMode.Impulse);
+        rbBubble.AddExplosionForce(explosionForce / 2, average, radius, upwards, ForceMode.Impulse); //player bubble has force reduced by half
         yield return new WaitForSeconds(1f);
         agent.enabled = true;
         rb.isKinematic = true;
