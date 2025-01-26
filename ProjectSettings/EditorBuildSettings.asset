@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/BubbleScene.unity
+    guid: 176ac30caf760514697e9a2061cf7d4d
   m_configObjects: {}
