@@ -20,7 +20,7 @@ public class WallBehaviour : MonoBehaviour
     {
         if(collision.relativeVelocity.magnitude > velocityThreshold)
         {
-            Debug.Log("Truly Over");
+            if (collision.collider.gameObject.name == "Bubble") Destroy(collision.collider.gameObject);
         }
     }
 }

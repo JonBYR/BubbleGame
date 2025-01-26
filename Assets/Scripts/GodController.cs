@@ -35,11 +35,17 @@ public class GodController : MonoBehaviour
             Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
             foreach(Collider hit in colliders) //to apply explosion look for every Collider the explosion should hit and apply a force to it's rigidbody
             {
-                if (hit.gameObject.name == "Cone") continue; //there is no requirement to move the cones with an explosion
-                if (hit.gameObject.tag == "NPC") continue;
-                if (hit.gameObject.name == "Bubble") StartCoroutine(camera.Shake(.15f, .4f));
-                Rigidbody rb = hit.GetComponent<Rigidbody>();
-                rb.AddExplosionForce(explosion, transform.position, radius, 10f, ForceMode.Impulse);
+                if (hit.gameObject.name == "Bubble")
+                {
+                    StartCoroutine(camera.Shake(.15f, .4f));
+                    Rigidbody rb = hit.GetComponent<Rigidbody>();
+                    rb.AddExplosionForce(explosion, transform.position, radius, 10f, ForceMode.Impulse);
+                }
+                if(hit.gameObject.tag == "Enemy")
+                {
+                    Rigidbody enemyrb = hit.GetComponent<Rigidbody>();
+                    enemyrb.AddExplosionForce(explosion, transform.position, radius, 10f, ForceMode.Impulse);
+                }
             }
             GodRb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
         }

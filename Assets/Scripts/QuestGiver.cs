@@ -32,9 +32,13 @@ public class QuestGiver : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Player" && q.returnToNPC == false)
         {
             OpenQuestWindow();
+        }
+        if(this.gameObject.name == "BubbleNPC (2)" && q.returnToNPC == true && other.gameObject.tag == "Player")
+        {
+            q.CompleteMoney();
         }
     }
     private void Update()

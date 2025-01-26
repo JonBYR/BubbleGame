@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 public class QuestTracker : MonoBehaviour
 {
+    //not convinced a Singleton works cleanly for a quest system, next time investigate a different method
     public static QuestTracker Instance;
     public bool activeQuest;
     public Quest currentQuest;
@@ -16,6 +17,10 @@ public class QuestTracker : MonoBehaviour
     public bool bubbleDefeated = false;
     private bool bubbleUnleashed = false;
     public TextMeshProUGUI acceptText;
+    public bool moneyGiven = false;
+    public bool returnToNPC = false;
+    private int money = 0;
+    public int maxMoney;
     public void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);
@@ -51,6 +56,7 @@ public class QuestTracker : MonoBehaviour
         showWindow = false;
         Destroy(NPC);
         NPC = null;
+        returnToNPC = false;
     }
     public void checkSpike()
     {
@@ -70,6 +76,30 @@ public class QuestTracker : MonoBehaviour
         if(currentQuest.title == "Murderous Bubble" && activeQuest == true)
         {
             bubbleDefeated = true;
+            activeQuest = false;
+            Transform particlePosition = GameObject.Find("Bubble").transform;
+            Instantiate(confetti, particlePosition.position, Quaternion.identity);
+            ResetQuestBool();
+        }
+    }
+    public void IncrementMoney()
+    {
+        if(currentQuest.title == "Lost Gold" && activeQuest == true)
+        {
+            money++;
+            Debug.Log("Singelton Calling");
+            if(money >= maxMoney)
+            {
+                acceptText.text = "Return to NPC";
+                returnToNPC = true;
+            }
+        }
+    }
+    public void CompleteMoney()
+    {
+        if(currentQuest.title == "Lost Gold" && activeQuest == true && returnToNPC == true)
+        {
+            moneyGiven = true;
             activeQuest = false;
             Transform particlePosition = GameObject.Find("Bubble").transform;
             Instantiate(confetti, particlePosition.position, Quaternion.identity);
