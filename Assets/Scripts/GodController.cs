@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class GodController : MonoBehaviour
 {
     private Rigidbody GodRb;
     public float explosion = 5f;
     public float radius;
     private CameraShake camera;
+    QuestTracker q;
+    AudioSource a;
+    AudioSource music;
     // Start is called before the first frame update
     void Start()
     {
+        q = QuestTracker.Instance;
+        music = GameObject.Find("Camera").GetComponent<AudioSource>();
+        a = GameObject.Find("AudioPlayer").GetComponent<AudioSource>();
         GodRb = this.GetComponent<Rigidbody>();
         camera = GameObject.Find("Camera").GetComponent<CameraShake>();
     }
@@ -24,10 +29,14 @@ public class GodController : MonoBehaviour
     {
         if (collision.collider.gameObject.name == "Bubble")
         {
+            music.Pause();
+            a.Play();
             Destroy(collision.collider.gameObject);
+            Invoke("CallReset", 2);
         }
         if (collision.collider.gameObject.tag == "Enemy")
         {
+            a.Play();
             Destroy(collision.collider.gameObject);
         }
         if (collision.collider.gameObject.name == "Floor")
@@ -49,5 +58,9 @@ public class GodController : MonoBehaviour
             }
             GodRb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
         }
+    }
+    void CallReset()
+    {
+        q.ResetScene();
     }
 }

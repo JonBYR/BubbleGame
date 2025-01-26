@@ -26,7 +26,7 @@ public class GenerateLevel : MonoBehaviour
                 if (distance <= 1.5f) continue;
             }
             Collider[] hitColliders = Physics.OverlapSphere(spikePosition, checkDistance);
-            if (hitColliders.Length > 1) continue;
+            if (hitColliders.Length > 2) continue;
             else
             {
                 Instantiate(spikePrefab, spikePosition, Quaternion.identity, levelParent.transform);

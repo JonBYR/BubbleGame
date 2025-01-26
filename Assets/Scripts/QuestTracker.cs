@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class QuestTracker : MonoBehaviour
 {
     //not convinced a Singleton works cleanly for a quest system, next time investigate a different method
@@ -105,5 +106,19 @@ public class QuestTracker : MonoBehaviour
             Instantiate(confetti, particlePosition.position, Quaternion.identity);
             ResetQuestBool();
         }
+    }
+    public void ResetScene()
+    {
+        activeQuest = false;
+        showWindow = false;
+        closeToSpike = false;
+        NPC = null;
+        bubbleDefeated = false;
+        bubbleUnleashed = false;
+        money = 0;
+        returnToNPC = false;
+        moneyGiven = false;
+        acceptText.text = "Y to accept \n N to cancel";
+        SceneManager.LoadScene("BubbleScene");
     }
 }

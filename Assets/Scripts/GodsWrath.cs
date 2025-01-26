@@ -19,11 +19,12 @@ public class GodsWrath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Transform playerPos = GameObject.Find("Bubble").GetComponent<Transform>();
         GodTimer -= Time.deltaTime;
         if(GodTimer <= 0f)
         {
             Vector3 playerPosition = GameObject.Find("Bubble").transform.position;
-            Vector3 GodPosition = new Vector3(playerPosition.x, 50f, playerPosition.z);
+            Vector3 GodPosition = new Vector3(playerPosition.x, 200f, playerPosition.z);
             Vector3 gravity = new Vector3(0, -9.8f, 0);
             Instantiate(GodObject, GodPosition, GodObject.transform.rotation);
             GodRb.AddForce(gravity * speed);

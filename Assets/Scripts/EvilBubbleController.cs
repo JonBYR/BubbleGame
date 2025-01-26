@@ -13,9 +13,11 @@ public class EvilBubbleController : MonoBehaviour
     public float explosionForce = 5f;
     public float radius = 3f;
     public float upwards = 1f;
+    QuestTracker q;
     // Start is called before the first frame update
     void Start()
     {
+        q = QuestTracker.Instance;
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.Find("Bubble").GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
@@ -24,6 +26,11 @@ public class EvilBubbleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (q.activeQuest == false) //this doesn't work but I think I need to revamp the quest system anyway as singleton method is not efficent
+        {
+            agent.enabled = false;
+            Destroy(this.gameObject);
+        }
         Debug.Log(agent.pathStatus);
         agent.destination = player.position;
     }
@@ -36,7 +43,7 @@ public class EvilBubbleController : MonoBehaviour
         Vector3 average = (midpointA + midpointB) / 2; //get the average of the two midpoints
         Rigidbody rbBubble = c.collider.gameObject.GetComponent<Rigidbody>();
         rb.AddExplosionForce(explosionForce, average, radius, upwards, ForceMode.Impulse);
-        rbBubble.AddExplosionForce(explosionForce / 2, average, radius, upwards, ForceMode.Impulse); //player bubble has force reduced by half
+        rbBubble.AddExplosionForce(explosionForce, average, radius, upwards, ForceMode.Impulse);
         yield return new WaitForSeconds(1f);
         agent.enabled = true;
         rb.isKinematic = true;

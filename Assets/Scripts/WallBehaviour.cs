@@ -4,23 +4,27 @@ using UnityEngine;
 
 public class WallBehaviour : MonoBehaviour
 {
-    public float velocityThreshold = 2.0f;
-    // Start is called before the first frame update
-    void Start()
+    AudioSource a;
+    AudioSource music;
+    QuestTracker q;
+    private void Start()
     {
-        
+       q = QuestTracker.Instance;
+        music = GameObject.Find("Camera").GetComponent<AudioSource>();
+       a = GameObject.Find("AudioPlayer").GetComponent<AudioSource>();
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.relativeVelocity.magnitude > velocityThreshold)
+        if (other.gameObject.tag == "Player")
         {
-            if (collision.collider.gameObject.name == "Bubble") Destroy(collision.collider.gameObject);
+            music.Pause();
+            a.Play();
+            Destroy(other.gameObject);
+            Invoke("CallReset", 2);
         }
+    }
+    void CallReset()
+    {
+        q.ResetScene();
     }
 }

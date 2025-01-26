@@ -18,7 +18,7 @@ public class AdaptMass : MonoBehaviour
     {
         if(q.moneyGiven == true)
         {
-            rb.mass = 2;
+            rb.mass = 0.6f;
         }
     }
 }

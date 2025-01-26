@@ -6,9 +6,13 @@ public class SpikeController : MonoBehaviour
 {
     GameObject player;
     QuestTracker q;
+    AudioSource a;
+    AudioSource music;
     // Start is called before the first frame update
     void Start()
     {
+        music = GameObject.Find("Camera").GetComponent<AudioSource>();
+        a = GameObject.Find("AudioPlayer").GetComponent<AudioSource>();
         q = QuestTracker.Instance;
         player = GameObject.Find("Bubble");
     }
@@ -29,12 +33,20 @@ public class SpikeController : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
+            music.Pause();
+            a.Play();
             Destroy(other.gameObject);
+            Invoke("CallReset", 2);
         }
         else if(other.gameObject.tag == "Enemy")
         {
+            a.Play();
             q.checkEnemy();
             Destroy(other.gameObject);
         }
+    }
+    void CallReset()
+    {
+        q.ResetScene();
     }
 }
