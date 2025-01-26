@@ -29,7 +29,7 @@ public class SpikeController : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            Debug.Log("It's Over");
+            Destroy(other.gameObject);
         }
         else if(other.gameObject.tag == "Enemy")
         {
