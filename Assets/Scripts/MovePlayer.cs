@@ -54,9 +54,10 @@ public class MovePlayer : MonoBehaviour
         cameraX.transform.Rotate(Vector3.up * mouseX); //turn camera left and right
         //look up and down
         camRotY -= mouseY;
-        camRotY = Mathf.Clamp(camRotY, -90f, 90f); //value cannot exceed -90 or 90
+        camRotY = Mathf.Clamp(camRotY, 0f, 90f); //value cannot exceed -90 or 90
         cameraY.transform.localRotation = Quaternion.Euler(camRotY, 0f, 0f);
         cameraX.transform.position = transform.position; //follow sphere
+        Debug.Log(cameraX.transform.position);
     }
     private void OnCollisionStay(Collision collision)
     {
